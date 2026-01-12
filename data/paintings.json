@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "title": "Sample Painting 1",
+    "artist": "Artist Name",
+    "year": 1920,
+    "collection": "American Art",
+    "image": "images/sample1.jpg",
+    "description": "This is a sample painting entry. Replace this with your actual painting information.",
+    "details": "Add detailed information about the painting here, including its history, significance, technique, and any interesting facts. You can write multiple paragraphs here to provide comprehensive information about the artwork."
+  },
+  {
+    "id": 2,
+    "title": "Sample Painting 2",
+    "artist": "Another Artist",
+    "year": 1885,
+    "collection": "European Art",
+    "image": "images/sample2.jpg",
+    "description": "A second sample entry showing how to add multiple paintings.",
+    "details": "This demonstrates how multiple painting entries are formatted. Each painting is separated by a comma. Remember not to put a comma after the last entry in the array."
+  },
+  {
+    "id": 3,
+    "title": "Sample Painting 3",
+    "artist": "Modern Artist",
+    "year": 2005,
+    "collection": "Modern & Contemporary Art",
+    "image": "images/sample3.jpg",
+    "description": "A contemporary piece showing the diversity of the collection.",
+    "details": "When adding your own paintings, simply copy one of these sample entries and modify all the fields with your painting's information. Make sure to increment the id number for each new painting."
+  }
+]
