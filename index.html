@@ -10,6 +10,7 @@
     <header>
         <h1>Denver Art Museum Guide</h1>
         <p class="subtitle">Your Personal Collection Browser</p>
+        <button id="adminToggle" class="admin-toggle">Admin Mode</button>
     </header>
 
     <main>
@@ -34,6 +35,13 @@
             <div class="search-controls">
                 <label for="searchBox">Search:</label>
                 <input type="text" id="searchBox" placeholder="Search paintings, artists...">
+            </div>
+
+            <div class="admin-controls" id="adminControls" style="display: none;">
+                <button id="addPaintingBtn" class="btn-primary">+ Add New Painting</button>
+                <button id="exportDataBtn" class="btn-secondary">Export Data</button>
+                <button id="importDataBtn" class="btn-secondary">Import Data</button>
+                <input type="file" id="importFileInput" accept=".json" style="display: none;">
             </div>
         </div>
 
@@ -65,6 +73,56 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Admin Form Modal -->
+    <div id="adminModal" class="modal">
+        <div class="modal-content admin-modal-content">
+            <span class="close-admin">&times;</span>
+            <h2 id="adminModalTitle">Add New Painting</h2>
+            <form id="paintingForm" class="painting-form">
+                <div class="form-group">
+                    <label for="paintingTitle">Title *</label>
+                    <input type="text" id="paintingTitle" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="paintingArtist">Artist *</label>
+                    <input type="text" id="paintingArtist" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="paintingYear">Year *</label>
+                    <input type="number" id="paintingYear" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="paintingCollection">Collection *</label>
+                    <input type="text" id="paintingCollection" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="paintingImage">Image *</label>
+                    <input type="file" id="paintingImage" accept="image/*">
+                    <div id="imagePreview" class="image-preview"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="paintingDescription">Description *</label>
+                    <textarea id="paintingDescription" rows="3" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="paintingDetails">Detailed Information *</label>
+                    <textarea id="paintingDetails" rows="6" required></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Save Painting</button>
+                    <button type="button" id="cancelFormBtn" class="btn-secondary">Cancel</button>
+                </div>
+            </form>
         </div>
     </div>
 
