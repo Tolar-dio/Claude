@@ -136,6 +136,34 @@ function createPaintingCard(painting) {
     return card;
 }
 
+// Format text with markdown-style formatting
+function formatText(text) {
+    if (!text) return '';
+
+    // Escape HTML to prevent XSS
+    let formatted = text
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+
+    // Convert markdown-style formatting
+    // Bold: **text** or __text__
+    formatted = formatted.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    formatted = formatted.replace(/__(.+?)__/g, '<strong>$1</strong>');
+
+    // Italic: *text* or _text_ (but not part of bold)
+    formatted = formatted.replace(/\*(.+?)\*/g, '<em>$1</em>');
+    formatted = formatted.replace(/_(.+?)_/g, '<em>$1</em>');
+
+    // Convert line breaks to <br>
+    formatted = formatted.replace(/\n/g, '<br>');
+
+    // Convert double spaces to preserve them
+    formatted = formatted.replace(/  /g, '&nbsp;&nbsp;');
+
+    return formatted;
+}
+
 // Open modal with painting details
 function openModal(painting) {
     document.getElementById('modalImage').src = painting.image;
@@ -143,8 +171,10 @@ function openModal(painting) {
     document.getElementById('modalArtist').textContent = painting.artist;
     document.getElementById('modalYear').textContent = painting.year;
     document.getElementById('modalCollection').textContent = painting.collection;
-    document.getElementById('modalDescription').textContent = painting.description;
-    document.getElementById('modalDetails').textContent = painting.details;
+
+    // Use innerHTML with formatted text for description and details
+    document.getElementById('modalDescription').innerHTML = formatText(painting.description);
+    document.getElementById('modalDetails').innerHTML = formatText(painting.details);
 
     modal.style.display = 'block';
     document.body.style.overflow = 'hidden';
