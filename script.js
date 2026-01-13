@@ -146,14 +146,28 @@ function formatText(text) {
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;');
 
+    // Convert markdown headers (must be at start of line or after <br>)
+    formatted = formatted.replace(/^### (.+)$/gm, '<h4>$1</h4>');
+    formatted = formatted.replace(/^## (.+)$/gm, '<h3>$1</h3>');
+    formatted = formatted.replace(/^# (.+)$/gm, '<h2>$1</h2>');
+
+    // Convert bullet lists (- or * at start of line)
+    formatted = formatted.replace(/^[\-\*] (.+)$/gm, '<span class="bullet-item">• $1</span>');
+
+    // Convert numbered lists
+    formatted = formatted.replace(/^\d+\. (.+)$/gm, '<span class="bullet-item">$&</span>');
+
+    // Convert inline code `code`
+    formatted = formatted.replace(/`(.+?)`/g, '<code>$1</code>');
+
     // Convert markdown-style formatting
-    // Bold: **text** or __text__
+    // Bold: **text** or __text__ (do this before italic to avoid conflicts)
     formatted = formatted.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
     formatted = formatted.replace(/__(.+?)__/g, '<strong>$1</strong>');
 
     // Italic: *text* or _text_ (but not part of bold)
-    formatted = formatted.replace(/\*(.+?)\*/g, '<em>$1</em>');
-    formatted = formatted.replace(/_(.+?)_/g, '<em>$1</em>');
+    formatted = formatted.replace(/(?<!\*)\*([^\*]+?)\*(?!\*)/g, '<em>$1</em>');
+    formatted = formatted.replace(/(?<!_)_([^_]+?)_(?!_)/g, '<em>$1</em>');
 
     // Convert line breaks to <br>
     formatted = formatted.replace(/\n/g, '<br>');

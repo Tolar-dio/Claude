@@ -334,6 +334,55 @@ main {
     font-style: italic;
 }
 
+/* Markdown formatting styles */
+.modal-description h2,
+.modal-details h2,
+.modal-description h3,
+.modal-details h3,
+.modal-description h4,
+.modal-details h4 {
+    color: #fff;
+    font-weight: 400;
+    margin-top: 1.5em;
+    margin-bottom: 0.75em;
+    letter-spacing: 0.02em;
+}
+
+.modal-description h2,
+.modal-details h2 {
+    font-size: 1.25rem;
+    border-bottom: 1px solid #2a2a2a;
+    padding-bottom: 0.5em;
+}
+
+.modal-description h3,
+.modal-details h3 {
+    font-size: 1.1rem;
+}
+
+.modal-description h4,
+.modal-details h4 {
+    font-size: 1rem;
+}
+
+.modal-description .bullet-item,
+.modal-details .bullet-item {
+    display: block;
+    margin-left: 1em;
+    margin-bottom: 0.5em;
+}
+
+.modal-description code,
+.modal-details code {
+    background: #0a0a0a;
+    color: #fff;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Monaco', 'Courier New', monospace;
+    font-size: 0.85em;
+    border: 1px solid #2a2a2a;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     body {
