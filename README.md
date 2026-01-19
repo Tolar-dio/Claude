@@ -1,15 +1,17 @@
-# Denver Art Museum Guide
+# Daily History
 
-A personal web-based application for browsing and managing your Denver Art Museum painting collection.
+A personal web-based application that presents a unique historical figure each day, with inspiring lessons and values you can apply to your own life. Unlike typical history apps focused on famous figures like Napoleon or Caesar, Daily History spotlights lesser-known but equally remarkable individuals like Lajos Kossuth, Ida B. Wells, and Vasily Arkhipov.
 
 ## Features
 
-- **Gallery View**: Browse all paintings in a beautiful grid layout
-- **Sorting**: Sort paintings by title, artist, year, or collection
-- **Filtering**: Filter paintings by museum collection
-- **Search**: Search across titles, artists, collections, and years
-- **Detailed View**: Click any painting to see full information and details
+- **Daily Figure**: See a different historical figure each day based on the date
+- **Personal Lessons**: Each figure comes with a lesson or value applicable to modern life
+- **Detailed Stories**: Click "Read Full Story" to learn their complete history
+- **Admin Mode**: Add, edit, and manage your collection of historical figures
+- **View All Figures**: Browse the complete list of figures in your collection
+- **Export/Import**: Backup and restore your figure collection
 - **Responsive Design**: Works on desktop, tablet, and mobile devices
+- **Private & Local**: All data stays on your computer in browser storage
 
 ## Getting Started
 
@@ -18,6 +20,7 @@ A personal web-based application for browsing and managing your Denver Art Museu
 1. Open `index.html` in your web browser
    - Double-click the file, or
    - Right-click and select "Open with" your preferred browser
+2. The app will display today's historical figure automatically
 
 ### Directory Structure
 
@@ -26,172 +29,206 @@ Claude/
 ├── index.html          # Main application file
 ├── styles.css          # Styling
 ├── script.js           # JavaScript functionality
-├── data/
-│   └── paintings.json  # Your painting data
-└── images/             # Store your painting images here
-    └── (your images)
+└── data/
+    └── figures.json    # Your historical figures data
 ```
 
-## Adding Paintings
+## Using the App
 
-### Step 1: Add Your Images
+### Viewing the Daily Figure
 
-1. Create an `images` folder in the project directory if it doesn't exist
-2. Copy your painting images into this folder
-3. Supported formats: JPG, PNG, WebP
-4. Recommended: Name files descriptively (e.g., `starry-night.jpg`)
+- The app automatically displays a different historical figure each day
+- Read their summary and the personal lesson highlighted on the main screen
+- Click "Read Full Story" to see their complete biography in a modal
 
-### Step 2: Edit paintings.json
+### Admin Mode
 
-Open `data/paintings.json` in any text editor and add your painting entries.
+Click the "Admin Mode" button in the header to access management features:
 
-#### Data Format
+- **Add New Figure**: Add historical figures to your collection
+- **View All Figures**: Browse and manage all figures
+- **Export Data**: Download your collection as a JSON file
+- **Import Data**: Restore from a backup or add figures from a file
+- **Edit/Delete**: Modify or remove figures from your collection
 
-Each painting entry should follow this structure:
+## Data Structure
+
+Each historical figure entry follows this structure:
 
 ```json
 {
   "id": 1,
-  "title": "Painting Title",
-  "artist": "Artist Name",
-  "year": 1920,
-  "collection": "Collection Name",
-  "image": "images/filename.jpg",
-  "description": "Brief description of the painting",
-  "details": "Detailed information about the painting, including history, technique, significance, etc."
+  "name": "Full Name",
+  "years": "1802-1894",
+  "region": "Country/Region",
+  "field": "Profession/Field",
+  "image": "",
+  "summary": "Brief 2-3 sentence summary of who they were",
+  "lesson": "**Lesson Title**: The personal value or lesson we can learn from their life story",
+  "details": "Full biographical details with multiple paragraphs about their life, achievements, and significance"
 }
 ```
 
-#### Field Descriptions
+### Field Descriptions
 
-- **id**: Unique number for each painting (increment for each new entry)
-- **title**: The painting's title
-- **artist**: The artist's name
-- **year**: Year the painting was created (use a number)
-- **collection**: Museum collection name (e.g., "American Art", "European Art", "Modern & Contemporary")
-- **image**: Path to the image file (relative to index.html)
-- **description**: Short description (1-2 sentences)
-- **details**: Longer writeup with comprehensive information
+- **id**: Unique number for each figure (auto-generated when using admin mode)
+- **name**: The person's full name
+- **years**: Their lifespan (e.g., "1920-1951")
+- **region**: Country or region they're associated with
+- **field**: Their profession or area of contribution
+- **image**: Path to image file (optional - leave empty string if no image)
+- **summary**: Brief introduction (2-3 sentences)
+- **lesson**: Personal lesson or value from their life (use **markdown** for bold titles)
+- **details**: Comprehensive biography with their full story
 
-#### Example Entry
+### Markdown Support
+
+The lesson and details fields support markdown formatting:
+
+- **Bold**: `**text**` becomes **text**
+- *Italic*: `*text*` becomes *text*
+- Paragraphs: Separate with blank lines
+- The lesson should start with a bold title like `**Resilience in Defeat**:`
+
+## Adding Figures
+
+### Using Admin Mode (Recommended)
+
+1. Click "Admin Mode" in the header
+2. Click "+ Add New Figure"
+3. Fill out the form with the figure's information
+4. Click "Save Figure"
+
+### Manually Editing figures.json
+
+Open `data/figures.json` in a text editor and add entries following the structure above.
+
+Example entry:
 
 ```json
 {
-  "id": 2,
-  "title": "The Blue Dancer",
-  "artist": "Edgar Degas",
-  "year": 1890,
-  "collection": "European Art",
-  "image": "images/blue-dancer.jpg",
-  "description": "A stunning portrayal of a ballet dancer in motion, showcasing Degas' masterful use of color and movement.",
-  "details": "This painting is part of Degas' famous series of ballet dancers. Created in 1890, it demonstrates his innovative approach to capturing movement and his fascination with the world of dance. The use of blue tones creates a dreamy, ethereal quality while the dynamic pose captures a fleeting moment of performance. Degas often worked in pastels for these pieces, allowing him to achieve the soft, luminous effects seen here."
+  "id": 1,
+  "name": "Ida B. Wells",
+  "years": "1862-1931",
+  "region": "United States",
+  "field": "Journalist & Civil Rights Activist",
+  "image": "",
+  "summary": "An investigative journalist who documented and campaigned against lynching in America, risking her life to expose racial violence through detailed, data-driven reporting.",
+  "lesson": "**Truth as Weapon**: Wells showed that facts and documentation can challenge even the most entrenched power structures. When mobs destroyed her newspaper, she didn't stop—she published elsewhere. This teaches us that speaking truth to power requires both courage and strategy.",
+  "details": "Born into slavery in Mississippi, Ida B. Wells became a teacher and then a journalist. In 1892, when three of her friends were lynched in Memphis, she began investigating lynchings throughout the South.\n\nWells discovered that the common justification for lynching—protecting white women—was largely a myth. Most victims were killed for economic competition or violating social codes. She published her findings in detailed investigative articles, using statistics and eyewitness accounts."
 }
 ```
 
-#### Full Example (Multiple Paintings)
+## The Daily Rotation
 
-```json
-[
-  {
-    "id": 1,
-    "title": "Mountain Landscape",
-    "artist": "Thomas Moran",
-    "year": 1875,
-    "collection": "American Western Art",
-    "image": "images/mountain-landscape.jpg",
-    "description": "A breathtaking vista of the Rocky Mountains at sunset.",
-    "details": "Thomas Moran was instrumental in capturing the beauty of the American West..."
-  },
-  {
-    "id": 2,
-    "title": "Portrait of a Lady",
-    "artist": "John Singer Sargent",
-    "year": 1905,
-    "collection": "American Art",
-    "image": "images/portrait-lady.jpg",
-    "description": "An elegant portrait demonstrating Sargent's virtuoso brushwork.",
-    "details": "This portrait showcases Sargent's ability to capture both the physical likeness..."
-  }
-]
-```
+The app uses a deterministic algorithm to select the daily figure:
 
-### Common Collection Names (Denver Art Museum)
+- The same figure appears on the same date every year
+- Everyone viewing the app sees the same figure on the same day
+- The algorithm cycles through all available figures
+- As you add more figures, the rotation extends
 
-Here are some typical collection names you might use:
+## Curating Your Collection
 
-- American Western Art
-- American Indian Art
-- Modern & Contemporary Art
-- European Art
-- Asian Art
-- Pre-Columbian Art
-- Spanish Colonial Art
-- Architecture & Design
-- Photography
-- Textile Art
+### Finding Lesser-Known Figures
 
-## Tips for Best Results
+Look for:
 
-### Images
-- Use high-quality images for best display
-- Images are automatically resized to fit the gallery
-- If an image fails to load, a placeholder will appear
+- Historical figures from underrepresented regions or time periods
+- People who made significant contributions but aren't household names
+- Individuals whose stories offer unique personal lessons
+- Those who exemplify specific virtues: courage, persistence, integrity, innovation
 
-### Writing Descriptions
-- **Description field**: Keep it brief (1-3 sentences) - this appears on hover/preview
-- **Details field**: Write comprehensive information here - visible in the modal view
-- Include: historical context, artistic technique, significance, interesting facts
+### Writing Compelling Lessons
 
-### Collections
-- Use consistent naming for collections (e.g., always "Modern & Contemporary Art" not sometimes "Modern Art")
-- The filter dropdown automatically populates based on your collection names
-- Collections are case-sensitive
+Focus on:
 
-### JSON Syntax
-- Don't forget commas between entries (but not after the last entry)
-- Use double quotes for all strings
-- Numbers (like year and id) don't need quotes
-- Each entry should be enclosed in curly braces `{}`
-- The entire file should be wrapped in square brackets `[]`
+- Universal human challenges and how they overcame them
+- Values that translate across time and culture
+- Specific actions or decisions that demonstrate the lesson
+- How their example applies to everyday modern life
 
-### Validation
-If your JSON file has errors, you can validate it at: https://jsonlint.com/
+### Balance Your Collection
 
-## Troubleshooting
+Consider including:
 
-**Paintings don't appear:**
-- Check that `data/paintings.json` exists and is properly formatted
-- Validate your JSON syntax
-- Check the browser console (F12) for errors
+- Different time periods (ancient to modern)
+- Various regions and cultures
+- Diverse fields (science, arts, politics, activism, etc.)
+- Both triumph and tragedy as teaching moments
+- Men and women in equal measure
 
-**Images don't load:**
-- Verify the image path in the JSON file
-- Ensure images are in the correct folder
-- Check that image filenames match exactly (case-sensitive)
+## Privacy & Data
 
-**Filtering/sorting not working:**
-- Refresh the page
-- Check for JavaScript errors in the browser console (F12)
+- All data is stored in your browser's localStorage
+- Nothing is sent to any server
+- Your collection is private and local to your computer
+- Use Export/Import to backup or transfer between devices
 
 ## Browser Compatibility
 
 Works with all modern browsers:
+
 - Chrome/Edge (recommended)
 - Firefox
 - Safari
 - Opera
 
-## Privacy
-
-This app runs entirely in your browser. No data is sent to any server. All information stays on your computer.
-
 ## Customization
 
 Feel free to modify:
-- **styles.css**: Change colors, fonts, layout
-- **index.html**: Adjust the structure or add new features
-- **script.js**: Modify sorting/filtering behavior
+
+- **styles.css**: Change colors, fonts, or layout
+- **index.html**: Adjust the structure
+- **script.js**: Modify rotation logic or add features
+
+## Tips for Best Results
+
+### Writing Style
+
+- Keep summaries concise (2-3 sentences max)
+- Make lessons specific and actionable
+- Use storytelling in the details section
+- Include dates, places, and concrete events
+
+### Lesson Themes
+
+Strong lesson themes include:
+
+- Resilience and perseverance
+- Moral courage
+- Innovation and creativity
+- Standing up for justice
+- Hidden depths and unexpected talents
+- The power of individual action
+- Finding meaning in adversity
+
+### Quality Over Quantity
+
+Better to have 20 well-researched, thoughtfully written figures than 100 hastily compiled entries.
+
+## Troubleshooting
+
+**Figures don't appear:**
+
+- Check that `data/figures.json` exists and is valid JSON
+- Validate your JSON at https://jsonlint.com/
+- Check browser console (F12) for errors
+
+**Same figure every day:**
+
+- Ensure you have multiple figures in your collection
+- Clear localStorage and reload (note: this erases custom additions)
+
+**Admin mode not working:**
+
+- Refresh the page
+- Check browser console for JavaScript errors
 
 ## License
 
-This is for your personal use. Modify and customize as you wish!
+This is for your personal use and learning. Modify and customize as you wish!
+
+---
+
+*"The past is never dead. It's not even past."* — William Faulkner

@@ -3,73 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Denver Art Museum Guide</title>
+    <title>Daily History - Learn From the Past</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Denver Art Museum Guide</h1>
-        <p class="subtitle">Your Personal Collection Browser</p>
+        <h1>Daily History</h1>
+        <p class="subtitle">Learn From the Past, One Person at a Time</p>
         <button id="adminToggle" class="admin-toggle">Admin Mode</button>
     </header>
 
     <main>
-        <div class="controls">
-            <div class="sort-controls">
-                <label for="sortBy">Sort by:</label>
-                <select id="sortBy">
-                    <option value="title">Title</option>
-                    <option value="artist">Artist</option>
-                    <option value="year">Year</option>
-                    <option value="collection">Collection</option>
-                </select>
-            </div>
-
-            <div class="filter-controls">
-                <label for="filterCollection">Filter by Collection:</label>
-                <select id="filterCollection">
-                    <option value="all">All Collections</option>
-                </select>
-            </div>
-
-            <div class="search-controls">
-                <label for="searchBox">Search:</label>
-                <input type="text" id="searchBox" placeholder="Search paintings, artists...">
-            </div>
-
-            <div class="admin-controls" id="adminControls" style="display: none;">
-                <button id="addPaintingBtn" class="btn-primary">+ Add New Painting</button>
-                <button id="exportDataBtn" class="btn-secondary">Export Data</button>
-                <button id="importDataBtn" class="btn-secondary">Import Data</button>
-                <input type="file" id="importFileInput" accept=".json" style="display: none;">
-            </div>
+        <div class="date-display">
+            <p id="currentDate"></p>
         </div>
 
-        <div id="gallery" class="gallery">
-            <!-- Paintings will be dynamically loaded here -->
+        <div class="admin-controls" id="adminControls" style="display: none;">
+            <button id="addFigureBtn" class="btn-primary">+ Add New Figure</button>
+            <button id="viewAllBtn" class="btn-secondary">View All Figures</button>
+            <button id="exportDataBtn" class="btn-secondary">Export Data</button>
+            <button id="importDataBtn" class="btn-secondary">Import Data</button>
+            <input type="file" id="importFileInput" accept=".json" style="display: none;">
+        </div>
+
+        <div id="dailyFigure" class="daily-figure">
+            <!-- Daily figure will be dynamically loaded here -->
         </div>
     </main>
 
-    <!-- Modal for painting details -->
+    <!-- Modal for figure details -->
     <div id="modal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <div class="modal-body">
-                <div class="modal-image">
-                    <img id="modalImage" src="" alt="">
-                </div>
                 <div class="modal-info">
-                    <h2 id="modalTitle"></h2>
-                    <p class="modal-artist"><strong>Artist:</strong> <span id="modalArtist"></span></p>
-                    <p class="modal-year"><strong>Year:</strong> <span id="modalYear"></span></p>
-                    <p class="modal-collection"><strong>Collection:</strong> <span id="modalCollection"></span></p>
-                    <div class="modal-description">
-                        <h3>Description</h3>
-                        <p id="modalDescription"></p>
+                    <h2 id="modalName"></h2>
+                    <p class="modal-years"><span id="modalYears"></span></p>
+                    <p class="modal-region"><strong>Region:</strong> <span id="modalRegion"></span></p>
+                    <p class="modal-field"><strong>Field:</strong> <span id="modalField"></span></p>
+                    <div class="modal-summary">
+                        <h3>Who They Were</h3>
+                        <p id="modalSummary"></p>
+                    </div>
+                    <div class="modal-lesson">
+                        <h3>The Lesson</h3>
+                        <div id="modalLesson"></div>
                     </div>
                     <div class="modal-details">
-                        <h3>Details</h3>
-                        <p id="modalDetails"></p>
+                        <h3>Their Story</h3>
+                        <div id="modalDetails"></div>
                     </div>
                 </div>
             </div>
@@ -80,49 +62,65 @@
     <div id="adminModal" class="modal">
         <div class="modal-content admin-modal-content">
             <span class="close-admin">&times;</span>
-            <h2 id="adminModalTitle">Add New Painting</h2>
-            <form id="paintingForm" class="painting-form">
+            <h2 id="adminModalTitle">Add New Historical Figure</h2>
+            <form id="figureForm" class="figure-form">
                 <div class="form-group">
-                    <label for="paintingTitle">Title *</label>
-                    <input type="text" id="paintingTitle" required>
+                    <label for="figureName">Name *</label>
+                    <input type="text" id="figureName" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="paintingArtist">Artist *</label>
-                    <input type="text" id="paintingArtist" required>
+                    <label for="figureYears">Years (e.g., 1802-1894) *</label>
+                    <input type="text" id="figureYears" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="paintingYear">Year *</label>
-                    <input type="number" id="paintingYear" required>
+                    <label for="figureRegion">Region/Country *</label>
+                    <input type="text" id="figureRegion" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="paintingCollection">Collection *</label>
-                    <input type="text" id="paintingCollection" required>
+                    <label for="figureField">Field/Profession *</label>
+                    <input type="text" id="figureField" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="paintingImage">Image *</label>
-                    <input type="file" id="paintingImage" accept="image/*">
+                    <label for="figureImage">Image (Optional)</label>
+                    <input type="file" id="figureImage" accept="image/*">
                     <div id="imagePreview" class="image-preview"></div>
                 </div>
 
                 <div class="form-group">
-                    <label for="paintingDescription">Description *</label>
-                    <textarea id="paintingDescription" rows="3" required></textarea>
+                    <label for="figureSummary">Summary (Who they were - 2-3 sentences) *</label>
+                    <textarea id="figureSummary" rows="3" required></textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="paintingDetails">Detailed Information *</label>
-                    <textarea id="paintingDetails" rows="6" required></textarea>
+                    <label for="figureLesson">Personal Lesson (What we can learn from them) *</label>
+                    <textarea id="figureLesson" rows="4" required placeholder="Start with a bold **title** for the lesson, then explain..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="figureDetails">Full Story (Their detailed history) *</label>
+                    <textarea id="figureDetails" rows="8" required></textarea>
                 </div>
 
                 <div class="form-actions">
-                    <button type="submit" class="btn-primary">Save Painting</button>
+                    <button type="submit" class="btn-primary">Save Figure</button>
                     <button type="button" id="cancelFormBtn" class="btn-secondary">Cancel</button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <!-- All Figures Modal -->
+    <div id="allFiguresModal" class="modal">
+        <div class="modal-content all-figures-modal">
+            <span class="close-all-figures">&times;</span>
+            <h2>All Historical Figures</h2>
+            <div id="allFiguresList" class="all-figures-list">
+                <!-- List of all figures will be loaded here -->
+            </div>
         </div>
     </div>
 

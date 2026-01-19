@@ -1,137 +1,138 @@
 // Global variables
-let paintings = [];
-let filteredPaintings = [];
+let figures = [];
 let isAdminMode = false;
-let editingPaintingId = null;
-const STORAGE_KEY = 'dam_paintings';
+let editingFigureId = null;
+const STORAGE_KEY = 'daily_history_figures';
 
 // DOM elements
-const gallery = document.getElementById('gallery');
-const sortBy = document.getElementById('sortBy');
-const filterCollection = document.getElementById('filterCollection');
-const searchBox = document.getElementById('searchBox');
+const dailyFigureDiv = document.getElementById('dailyFigure');
+const currentDateDiv = document.getElementById('currentDate');
 const modal = document.getElementById('modal');
-const closeModal = document.querySelector('.close');
+const closeModalBtn = document.querySelector('.close');
 const adminToggle = document.getElementById('adminToggle');
 const adminControls = document.getElementById('adminControls');
 const adminModal = document.getElementById('adminModal');
 const closeAdminModal = document.querySelector('.close-admin');
-const paintingForm = document.getElementById('paintingForm');
-const addPaintingBtn = document.getElementById('addPaintingBtn');
+const figureForm = document.getElementById('figureForm');
+const addFigureBtn = document.getElementById('addFigureBtn');
+const viewAllBtn = document.getElementById('viewAllBtn');
 const cancelFormBtn = document.getElementById('cancelFormBtn');
 const exportDataBtn = document.getElementById('exportDataBtn');
 const importDataBtn = document.getElementById('importDataBtn');
 const importFileInput = document.getElementById('importFileInput');
-const paintingImageInput = document.getElementById('paintingImage');
+const figureImageInput = document.getElementById('figureImage');
 const imagePreview = document.getElementById('imagePreview');
+const allFiguresModal = document.getElementById('allFiguresModal');
+const closeAllFigures = document.querySelector('.close-all-figures');
+const allFiguresList = document.getElementById('allFiguresList');
 
-// Load paintings from localStorage or JSON file
-async function loadPaintings() {
+// Get today's figure based on date
+function getTodaysFigure() {
+    if (figures.length === 0) return null;
+
+    // Get days since epoch (ensures same figure for same date)
+    const now = new Date();
+    const start = new Date(now.getFullYear(), 0, 0);
+    const diff = now - start;
+    const oneDay = 1000 * 60 * 60 * 24;
+    const dayOfYear = Math.floor(diff / oneDay);
+
+    // Use modulo to cycle through figures
+    const index = dayOfYear % figures.length;
+    return figures[index];
+}
+
+// Display current date
+function displayCurrentDate() {
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const dateString = new Date().toLocaleDateString('en-US', options);
+    currentDateDiv.textContent = dateString;
+}
+
+// Load figures from localStorage or JSON file
+async function loadFigures() {
     try {
         // First check localStorage
         const stored = localStorage.getItem(STORAGE_KEY);
         if (stored) {
-            paintings = JSON.parse(stored);
-            filteredPaintings = [...paintings];
-            populateCollectionFilter();
-            displayPaintings();
+            figures = JSON.parse(stored);
+            displayDailyFigure();
             return;
         }
 
         // If no localStorage, try loading from JSON
-        const response = await fetch('data/paintings.json');
-        paintings = await response.json();
+        const response = await fetch('data/figures.json');
+        figures = await response.json();
 
         // Save to localStorage for future use
-        savePaintings();
+        saveFigures();
 
-        filteredPaintings = [...paintings];
-        populateCollectionFilter();
-        displayPaintings();
+        displayDailyFigure();
     } catch (error) {
-        console.error('Error loading paintings:', error);
-        paintings = [];
-        filteredPaintings = [];
-        gallery.innerHTML = `
+        console.error('Error loading figures:', error);
+        figures = [];
+        dailyFigureDiv.innerHTML = `
             <div class="empty-state">
-                <h3>Welcome!</h3>
-                <p>No paintings yet. Enable Admin Mode to add your first painting.</p>
+                <h3>Welcome to Daily History!</h3>
+                <p>No historical figures yet. Enable Admin Mode to add your first figure.</p>
             </div>
         `;
     }
 }
 
-// Save paintings to localStorage
-function savePaintings() {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(paintings));
+// Save figures to localStorage
+function saveFigures() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(figures));
 }
 
-// Populate collection filter dropdown
-function populateCollectionFilter() {
-    const collections = [...new Set(paintings.map(p => p.collection))].sort();
-    filterCollection.innerHTML = '<option value="all">All Collections</option>';
+// Display today's figure
+function displayDailyFigure() {
+    displayCurrentDate();
 
-    collections.forEach(collection => {
-        const option = document.createElement('option');
-        option.value = collection;
-        option.textContent = collection;
-        filterCollection.appendChild(option);
-    });
-}
+    const todaysFigure = getTodaysFigure();
 
-// Display paintings in gallery
-function displayPaintings() {
-    if (filteredPaintings.length === 0) {
-        gallery.innerHTML = `
+    if (!todaysFigure) {
+        dailyFigureDiv.innerHTML = `
             <div class="empty-state">
-                <h3>No paintings found</h3>
-                <p>${isAdminMode ? 'Click "Add New Painting" to get started!' : 'Try adjusting your filters or search terms.'}</p>
+                <h3>No figures available</h3>
+                <p>${isAdminMode ? 'Click "Add New Figure" to get started!' : 'Check back soon!'}</p>
             </div>
         `;
         return;
     }
 
-    gallery.innerHTML = '';
-
-    filteredPaintings.forEach(painting => {
-        const card = createPaintingCard(painting);
-        gallery.appendChild(card);
-    });
+    const card = createFigureCard(todaysFigure);
+    dailyFigureDiv.innerHTML = '';
+    dailyFigureDiv.appendChild(card);
 }
 
-// Create painting card element
-function createPaintingCard(painting) {
+// Create figure card element
+function createFigureCard(figure) {
     const card = document.createElement('div');
-    card.className = 'painting-card';
-
-    const imageUrl = painting.image || 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'280\' height=\'250\' viewBox=\'0 0 280 250\'%3E%3Crect fill=\'%23f0f0f0\' width=\'280\' height=\'250\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'sans-serif\' font-size=\'16\' fill=\'%23999\'%3ENo Image%3C/text%3E%3C/svg%3E';
+    card.className = 'figure-card';
 
     card.innerHTML = `
-        <img src="${imageUrl}" alt="${painting.title}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'280\' height=\'250\' viewBox=\'0 0 280 250\'%3E%3Crect fill=\'%23f0f0f0\' width=\'280\' height=\'250\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'sans-serif\' font-size=\'16\' fill=\'%23999\'%3ENo Image%3C/text%3E%3C/svg%3E'">
-        <div class="painting-info">
-            <h3>${painting.title}</h3>
-            <p class="artist">${painting.artist}</p>
-            <p class="year">${painting.year}</p>
-            <p class="collection">${painting.collection}</p>
+        <div class="figure-header">
+            <h2>${figure.name}</h2>
+            <p class="figure-years">${figure.years}</p>
+            <p class="figure-meta">${figure.region} • ${figure.field}</p>
         </div>
+        <div class="figure-summary">
+            <h3>Who They Were</h3>
+            <p>${figure.summary}</p>
+        </div>
+        <div class="figure-lesson">
+            <h3>The Lesson</h3>
+            <div>${formatText(figure.lesson)}</div>
+        </div>
+        <button class="btn-read-more" onclick="openFigureModal(${figure.id})">Read Full Story</button>
         ${isAdminMode ? `
             <div class="card-actions">
-                <button class="btn-edit" onclick="editPainting(${painting.id}); event.stopPropagation();">Edit</button>
-                <button class="btn-danger" onclick="deletePainting(${painting.id}); event.stopPropagation();">Delete</button>
+                <button class="btn-edit" onclick="editFigure(${figure.id}); event.stopPropagation();">Edit</button>
+                <button class="btn-danger" onclick="deleteFigure(${figure.id}); event.stopPropagation();">Delete</button>
             </div>
         ` : ''}
     `;
-
-    // Only add click handler to the card, not the buttons
-    if (!isAdminMode) {
-        card.onclick = () => openModal(painting);
-    } else {
-        // In admin mode, only open modal when clicking on the image or info area
-        const img = card.querySelector('img');
-        const info = card.querySelector('.painting-info');
-        img.onclick = () => openModal(painting);
-        info.onclick = () => openModal(painting);
-    }
 
     return card;
 }
@@ -178,17 +179,20 @@ function formatText(text) {
     return formatted;
 }
 
-// Open modal with painting details
-function openModal(painting) {
-    document.getElementById('modalImage').src = painting.image;
-    document.getElementById('modalTitle').textContent = painting.title;
-    document.getElementById('modalArtist').textContent = painting.artist;
-    document.getElementById('modalYear').textContent = painting.year;
-    document.getElementById('modalCollection').textContent = painting.collection;
+// Open modal with figure details
+function openFigureModal(id) {
+    const figure = figures.find(f => f.id === id);
+    if (!figure) return;
 
-    // Use innerHTML with formatted text for description and details
-    document.getElementById('modalDescription').innerHTML = formatText(painting.description);
-    document.getElementById('modalDetails').innerHTML = formatText(painting.details);
+    document.getElementById('modalName').textContent = figure.name;
+    document.getElementById('modalYears').textContent = figure.years;
+    document.getElementById('modalRegion').textContent = figure.region;
+    document.getElementById('modalField').textContent = figure.field;
+    document.getElementById('modalSummary').textContent = figure.summary;
+
+    // Use innerHTML with formatted text for lesson and details
+    document.getElementById('modalLesson').innerHTML = formatText(figure.lesson);
+    document.getElementById('modalDetails').innerHTML = formatText(figure.details);
 
     modal.style.display = 'block';
     document.body.style.overflow = 'hidden';
@@ -206,62 +210,63 @@ function toggleAdminMode() {
     adminToggle.classList.toggle('active', isAdminMode);
     adminToggle.textContent = isAdminMode ? 'Exit Admin' : 'Admin Mode';
     adminControls.style.display = isAdminMode ? 'flex' : 'none';
-    displayPaintings();
+    displayDailyFigure();
 }
 
-// Open admin form for new painting
+// Open admin form for new figure
 function openAdminForm() {
-    editingPaintingId = null;
-    paintingForm.reset();
+    editingFigureId = null;
+    figureForm.reset();
     imagePreview.innerHTML = '';
-    document.getElementById('adminModalTitle').textContent = 'Add New Painting';
+    document.getElementById('adminModalTitle').textContent = 'Add New Historical Figure';
     adminModal.style.display = 'block';
     document.body.style.overflow = 'hidden';
 }
 
-// Edit painting
-function editPainting(id) {
-    const painting = paintings.find(p => p.id === id);
-    if (!painting) return;
+// Edit figure
+function editFigure(id) {
+    const figure = figures.find(f => f.id === id);
+    if (!figure) return;
 
-    editingPaintingId = id;
-    document.getElementById('paintingTitle').value = painting.title;
-    document.getElementById('paintingArtist').value = painting.artist;
-    document.getElementById('paintingYear').value = painting.year;
-    document.getElementById('paintingCollection').value = painting.collection;
-    document.getElementById('paintingDescription').value = painting.description;
-    document.getElementById('paintingDetails').value = painting.details;
+    editingFigureId = id;
+    document.getElementById('figureName').value = figure.name;
+    document.getElementById('figureYears').value = figure.years;
+    document.getElementById('figureRegion').value = figure.region;
+    document.getElementById('figureField').value = figure.field;
+    document.getElementById('figureSummary').value = figure.summary;
+    document.getElementById('figureLesson').value = figure.lesson;
+    document.getElementById('figureDetails').value = figure.details;
 
     // Show existing image
-    if (painting.image) {
-        imagePreview.innerHTML = `<img src="${painting.image}" alt="Preview">`;
+    if (figure.image) {
+        imagePreview.innerHTML = `<img src="${figure.image}" alt="Preview">`;
     }
 
-    document.getElementById('adminModalTitle').textContent = 'Edit Painting';
+    document.getElementById('adminModalTitle').textContent = 'Edit Historical Figure';
     adminModal.style.display = 'block';
     document.body.style.overflow = 'hidden';
 }
 
-// Delete painting
-function deletePainting(id) {
-    if (!confirm('Are you sure you want to delete this painting?')) return;
+// Delete figure
+function deleteFigure(id) {
+    if (!confirm('Are you sure you want to delete this historical figure?')) return;
 
-    paintings = paintings.filter(p => p.id !== id);
-    savePaintings();
-    filterPaintings();
+    figures = figures.filter(f => f.id !== id);
+    saveFigures();
+    displayDailyFigure();
 }
 
 // Close admin modal
 function closeAdminModalHandler() {
     adminModal.style.display = 'none';
     document.body.style.overflow = 'auto';
-    paintingForm.reset();
+    figureForm.reset();
     imagePreview.innerHTML = '';
-    editingPaintingId = null;
+    editingFigureId = null;
 }
 
 // Handle image upload and preview
-paintingImageInput.addEventListener('change', function(e) {
+figureImageInput.addEventListener('change', function(e) {
     const file = e.target.files[0];
     if (!file) return;
 
@@ -280,83 +285,126 @@ paintingImageInput.addEventListener('change', function(e) {
 });
 
 // Handle form submission
-paintingForm.addEventListener('submit', async function(e) {
+figureForm.addEventListener('submit', async function(e) {
     e.preventDefault();
 
-    const title = document.getElementById('paintingTitle').value.trim();
-    const artist = document.getElementById('paintingArtist').value.trim();
-    const year = parseInt(document.getElementById('paintingYear').value);
-    const collection = document.getElementById('paintingCollection').value.trim();
-    const description = document.getElementById('paintingDescription').value.trim();
-    const details = document.getElementById('paintingDetails').value.trim();
+    const name = document.getElementById('figureName').value.trim();
+    const years = document.getElementById('figureYears').value.trim();
+    const region = document.getElementById('figureRegion').value.trim();
+    const field = document.getElementById('figureField').value.trim();
+    const summary = document.getElementById('figureSummary').value.trim();
+    const lesson = document.getElementById('figureLesson').value.trim();
+    const details = document.getElementById('figureDetails').value.trim();
 
     // Get image (either new upload or existing)
     let imageData = '';
-    if (paintingImageInput.files.length > 0) {
-        const file = paintingImageInput.files[0];
+    if (figureImageInput.files.length > 0) {
+        const file = figureImageInput.files[0];
         const reader = new FileReader();
 
         reader.onload = function(event) {
             imageData = event.target.result;
-            savePaintingData(imageData);
+            saveFigureData(imageData);
         };
         reader.readAsDataURL(file);
-    } else if (editingPaintingId) {
+    } else if (editingFigureId) {
         // Keep existing image when editing
-        const existingPainting = paintings.find(p => p.id === editingPaintingId);
-        imageData = existingPainting ? existingPainting.image : '';
-        savePaintingData(imageData);
+        const existingFigure = figures.find(f => f.id === editingFigureId);
+        imageData = existingFigure ? existingFigure.image : '';
+        saveFigureData(imageData);
     } else {
-        alert('Please upload an image for the painting.');
-        return;
+        // No image is fine for figures
+        saveFigureData('');
     }
 
-    function savePaintingData(image) {
-        if (editingPaintingId) {
-            // Update existing painting
-            const index = paintings.findIndex(p => p.id === editingPaintingId);
+    function saveFigureData(image) {
+        if (editingFigureId) {
+            // Update existing figure
+            const index = figures.findIndex(f => f.id === editingFigureId);
             if (index !== -1) {
-                paintings[index] = {
-                    id: editingPaintingId,
-                    title,
-                    artist,
-                    year,
-                    collection,
+                figures[index] = {
+                    id: editingFigureId,
+                    name,
+                    years,
+                    region,
+                    field,
                     image,
-                    description,
+                    summary,
+                    lesson,
                     details
                 };
             }
         } else {
-            // Add new painting
-            const newId = paintings.length > 0 ? Math.max(...paintings.map(p => p.id)) + 1 : 1;
-            paintings.push({
+            // Add new figure
+            const newId = figures.length > 0 ? Math.max(...figures.map(f => f.id)) + 1 : 1;
+            figures.push({
                 id: newId,
-                title,
-                artist,
-                year,
-                collection,
+                name,
+                years,
+                region,
+                field,
                 image,
-                description,
+                summary,
+                lesson,
                 details
             });
         }
 
-        savePaintings();
-        populateCollectionFilter();
-        filterPaintings();
+        saveFigures();
+        displayDailyFigure();
         closeAdminModalHandler();
     }
 });
 
+// View all figures
+function viewAllFigures() {
+    if (figures.length === 0) {
+        alert('No figures available yet.');
+        return;
+    }
+
+    allFiguresList.innerHTML = '';
+
+    // Sort figures alphabetically by name
+    const sortedFigures = [...figures].sort((a, b) => a.name.localeCompare(b.name));
+
+    sortedFigures.forEach(figure => {
+        const item = document.createElement('div');
+        item.className = 'all-figures-item';
+        item.innerHTML = `
+            <div class="all-figures-info" onclick="openFigureModal(${figure.id})">
+                <h3>${figure.name}</h3>
+                <p class="figure-years">${figure.years}</p>
+                <p class="figure-meta">${figure.region} • ${figure.field}</p>
+            </div>
+            ${isAdminMode ? `
+                <div class="all-figures-actions">
+                    <button class="btn-edit" onclick="editFigure(${figure.id}); event.stopPropagation();">Edit</button>
+                    <button class="btn-danger" onclick="deleteFigure(${figure.id}); event.stopPropagation();">Delete</button>
+                </div>
+            ` : ''}
+        `;
+        allFiguresList.appendChild(item);
+    });
+
+    allFiguresModal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+
+// Close all figures modal
+function closeAllFiguresModal() {
+    allFiguresModal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
 // Export data
 function exportData() {
-    const dataStr = JSON.stringify(paintings, null, 2);
+    const dataStr = JSON.stringify(figures, null, 2);
     const dataBlob = new Blob([dataStr], { type: 'application/json' });
     const url = URL.createObjectURL(dataBlob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = `museum-paintings-${new Date().toISOString().split('T')[0]}.json`;
+    link.download = `daily-history-figures-${new Date().toISOString().split('T')[0]}.json`;
     link.click();
     URL.revokeObjectURL(url);
 }
@@ -380,11 +428,10 @@ importFileInput.addEventListener('change', function(e) {
                 return;
             }
 
-            if (confirm('This will replace all existing paintings. Continue?')) {
-                paintings = importedData;
-                savePaintings();
-                populateCollectionFilter();
-                filterPaintings();
+            if (confirm('This will replace all existing figures. Continue?')) {
+                figures = importedData;
+                saveFigures();
+                displayDailyFigure();
                 alert('Data imported successfully!');
             }
         } catch (error) {
@@ -396,56 +443,14 @@ importFileInput.addEventListener('change', function(e) {
     e.target.value = ''; // Reset input
 });
 
-// Sort paintings
-function sortPaintings() {
-    const sortValue = sortBy.value;
-
-    filteredPaintings.sort((a, b) => {
-        switch (sortValue) {
-            case 'title':
-                return a.title.localeCompare(b.title);
-            case 'artist':
-                return a.artist.localeCompare(b.artist);
-            case 'year':
-                return a.year - b.year;
-            case 'collection':
-                return a.collection.localeCompare(b.collection);
-            default:
-                return 0;
-        }
-    });
-
-    displayPaintings();
-}
-
-// Filter paintings
-function filterPaintings() {
-    const collectionFilter = filterCollection.value;
-    const searchTerm = searchBox.value.toLowerCase();
-
-    filteredPaintings = paintings.filter(painting => {
-        const matchesCollection = collectionFilter === 'all' || painting.collection === collectionFilter;
-        const matchesSearch = searchTerm === '' ||
-            painting.title.toLowerCase().includes(searchTerm) ||
-            painting.artist.toLowerCase().includes(searchTerm) ||
-            painting.collection.toLowerCase().includes(searchTerm) ||
-            painting.year.toString().includes(searchTerm);
-
-        return matchesCollection && matchesSearch;
-    });
-
-    sortPaintings();
-}
-
 // Event listeners
-sortBy.addEventListener('change', sortPaintings);
-filterCollection.addEventListener('change', filterPaintings);
-searchBox.addEventListener('input', filterPaintings);
-closeModal.addEventListener('click', closeModalHandler);
+closeModalBtn.addEventListener('click', closeModalHandler);
 adminToggle.addEventListener('click', toggleAdminMode);
-addPaintingBtn.addEventListener('click', openAdminForm);
+addFigureBtn.addEventListener('click', openAdminForm);
+viewAllBtn.addEventListener('click', viewAllFigures);
 cancelFormBtn.addEventListener('click', closeAdminModalHandler);
 closeAdminModal.addEventListener('click', closeAdminModalHandler);
+closeAllFigures.addEventListener('click', closeAllFiguresModal);
 exportDataBtn.addEventListener('click', exportData);
 importDataBtn.addEventListener('click', importData);
 
@@ -456,6 +461,9 @@ window.addEventListener('click', (event) => {
     }
     if (event.target === adminModal) {
         closeAdminModalHandler();
+    }
+    if (event.target === allFiguresModal) {
+        closeAllFiguresModal();
     }
 });
 
@@ -468,12 +476,16 @@ document.addEventListener('keydown', (event) => {
         if (adminModal.style.display === 'block') {
             closeAdminModalHandler();
         }
+        if (allFiguresModal.style.display === 'block') {
+            closeAllFiguresModal();
+        }
     }
 });
 
 // Make functions global for onclick handlers
-window.editPainting = editPainting;
-window.deletePainting = deletePainting;
+window.openFigureModal = openFigureModal;
+window.editFigure = editFigure;
+window.deleteFigure = deleteFigure;
 
 // Initialize app
-loadPaintings();
+loadFigures();

@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "name": "Lajos Kossuth",
+    "years": "1802-1894",
+    "region": "Hungary",
+    "field": "Revolutionary Leader & Statesman",
+    "image": "",
+    "summary": "Hungarian revolutionary who led the 1848 uprising against Habsburg rule, advocating for democracy and national independence. Though his revolution failed, he continued championing Hungarian freedom from exile for decades.",
+    "lesson": "**Resilience in Defeat**: Kossuth's life teaches us that failure doesn't diminish the value of standing for what's right. Even when his revolution was crushed, he never abandoned his principles. In our own lives, we can choose to remain committed to our values even when outcomes don't go our way. True leadership isn't measured by victories alone, but by the courage to persist when the cause is just.",
+    "details": "Lajos Kossuth was a lawyer, journalist, and politician who became the leader of Hungary's fight for independence from the Austrian Empire. His eloquent speeches and writings inspired a generation to believe in democracy and self-determination.\n\nDuring the Revolution of 1848, Kossuth served as Governor-President of Hungary, implementing progressive reforms including the abolition of serfdom and the establishment of religious equality. When Russian forces helped Austria crush the revolution in 1849, Kossuth fled into exile.\n\nFor the next 45 years, he traveled Europe and America, speaking passionately about Hungarian independence and inspiring democratic movements worldwide. His 1851 tour of the United States drew massive crowds, and even influenced American political discourse.\n\nThough he never saw his homeland achieve full independence in his lifetime, his ideas planted seeds that eventually blossomed. Kossuth showed that moral victories can outlast military defeats, and that a life dedicated to justice leaves a legacy that transcends personal success."
+  },
+  {
+    "id": 2,
+    "name": "Hedy Lamarr",
+    "years": "1914-2000",
+    "region": "Austria/United States",
+    "field": "Actress & Inventor",
+    "image": "",
+    "summary": "Hollywood star who was also a brilliant inventor, co-creating a frequency-hopping technology during WWII that became the foundation for modern WiFi, Bluetooth, and GPS.",
+    "lesson": "**Hidden Depths**: Lamarr reminds us that people contain multitudes. She was told to be beautiful and silent, yet her mind created technology that changed the world. Don't let others' expectations define your capabilities. Your interests and talents may seem unrelated, but they all contribute to who you are. The world benefits most when we refuse to be put in boxes.",
+    "details": "Hedy Lamarr was one of the most glamorous movie stars of Hollywood's golden age, but her beauty overshadowed her brilliant mind. Born Hedwig Kiesler in Vienna, she studied engineering before becoming an actress.\n\nDuring World War II, wanting to help the Allied war effort, she co-invented a radio guidance system using frequency-hopping spread spectrum technology. The idea came from her knowledge of music and player pianos. The U.S. Navy initially dismissed her invention, suggesting she'd be more useful selling war bonds.\n\nHer patent was finally adopted by the military in the 1960s. Decades later, her frequency-hopping technique became the foundation for WiFi, Bluetooth, and GPS technologies that billions of people use daily.\n\nLamarr received little recognition for her invention during her lifetime. Only in her 80s did she begin receiving awards for her contribution to technology. She once said, 'Any girl can be glamorous. All you have to do is stand still and look stupid.' She proved she was anything but."
+  },
+  {
+    "id": 3,
+    "name": "Henrietta Lacks",
+    "years": "1920-1951",
+    "region": "United States",
+    "field": "Unwitting Medical Contributor",
+    "image": "",
+    "summary": "An African American woman whose cancer cells were taken without her knowledge in 1951. These 'HeLa' cells became the first immortal human cell line, revolutionizing medical research and leading to countless breakthroughs.",
+    "lesson": "**Unintended Legacy**: Lacks never knew her cells would save millions of lives, cure diseases, and even go to space. This teaches us that our impact often extends far beyond our awareness or intention. The small things we do—the kindness we show, the work we complete, the children we raise—ripple forward in ways we'll never see. Our significance isn't always visible to us.",
+    "details": "Henrietta Lacks was a tobacco farmer and mother of five who was treated for cervical cancer at Johns Hopkins Hospital. Without her knowledge or consent, doctors took samples of her cancer cells.\n\nThese cells had an extraordinary property: unlike normal cells that die after a few divisions, Lacks' cells reproduced indefinitely. Scientists named them 'HeLa' cells, and they became the first immortal human cell line.\n\nHeLa cells have been used in developing the polio vaccine, cancer treatments, AIDS research, gene mapping, and countless other medical advances. More than 50 million metric tons of HeLa cells have been grown in laboratories worldwide.\n\nFor decades, Henrietta's family didn't know her cells were being used. They couldn't afford health insurance while companies made millions from her cells. Her story raises profound questions about medical ethics, consent, and racial inequality in healthcare.\n\nHenrietta Lacks never chose to be a hero, yet her cells have saved more lives than we can count. Her story reminds us that every person has inherent value and dignity, regardless of whether the world recognizes it."
+  },
+  {
+    "id": 4,
+    "name": "Vasily Arkhipov",
+    "years": "1926-1998",
+    "region": "Soviet Union/Russia",
+    "field": "Naval Officer",
+    "image": "",
+    "summary": "Soviet submarine officer who, during the Cuban Missile Crisis in 1962, refused to authorize a nuclear torpedo launch that could have triggered World War III. He is credited with preventing nuclear war.",
+    "lesson": "**The Power of One Vote**: Arkhipov was one of three officers who needed to authorize the launch. He said no when two others said yes. This teaches us that individual dissent matters enormously, even when we're in the minority. Having the courage to say 'wait' when everyone else is rushing toward disaster is one of the highest forms of leadership. Your single voice might be the one that changes everything.",
+    "details": "On October 27, 1962, at the height of the Cuban Missile Crisis, Soviet submarine B-59 was trapped by U.S. Navy destroyers in the Caribbean. The submarine had been out of contact with Moscow and didn't know if war had already started.\n\nThe Americans dropped practice depth charges to force the submarine to surface. Inside the submarine, conditions were dire—temperature exceeded 120°F, oxygen was low, and nerves were frayed. The captain and political officer decided to launch a nuclear torpedo.\n\nSoviet protocol required all three senior officers to agree on launching a nuclear weapon. Vasily Arkhipov, the submarine's flotilla commander, was the third officer. Despite intense pressure, he refused authorization and persuaded the captain to surface and await orders from Moscow.\n\nArkhipov's decision prevented what could have been the start of nuclear war. Yet he lived modestly in Russia, never seeking recognition. His story wasn't widely known until after his death.\n\nThomas Blanton, director of the National Security Archive, said: 'A guy called Vasily Arkhipov saved the world.' One man's calm judgment in the most stressful moment imaginable may have preserved human civilization."
+  },
+  {
+    "id": 5,
+    "name": "Ida B. Wells",
+    "years": "1862-1931",
+    "region": "United States",
+    "field": "Journalist & Civil Rights Activist",
+    "image": "",
+    "summary": "An investigative journalist who documented and campaigned against lynching in America, risking her life to expose racial violence through detailed, data-driven reporting.",
+    "lesson": "**Truth as Weapon**: Wells showed that facts and documentation can challenge even the most entrenched power structures. When mobs destroyed her newspaper, she didn't stop—she published elsewhere. This teaches us that speaking truth to power requires both courage and strategy. Research, document, and share the truth, even when it's dangerous. Change often starts with one person refusing to accept the official narrative.",
+    "details": "Born into slavery in Mississippi, Ida B. Wells became a teacher and then a journalist. In 1892, when three of her friends were lynched in Memphis, she began investigating lynchings throughout the South.\n\nWells discovered that the common justification for lynching—protecting white women—was largely a myth. Most victims were killed for economic competition or violating social codes. She published her findings in detailed investigative articles, using statistics and eyewitness accounts.\n\nHer Memphis newspaper office was destroyed by a mob, forcing her to flee to Chicago. She continued her crusade from there, publishing the pamphlet 'Southern Horrors' and traveling to England to build international pressure against lynching.\n\nWells helped found the NAACP (though she was later sidelined by its male leadership) and continued fighting for civil rights and women's suffrage. She understood that racial justice and gender equality were interconnected struggles.\n\nHer fearless journalism laid groundwork for the Civil Rights Movement. She proved that one person armed with truth and determination could challenge an entire system of terror. As she wrote: 'The way to right wrongs is to turn the light of truth upon them.'"
+  },
+  {
+    "id": 6,
+    "name": "Viktor Frankl",
+    "years": "1905-1997",
+    "region": "Austria",
+    "field": "Neurologist, Psychiatrist & Holocaust Survivor",
+    "image": "",
+    "summary": "A psychiatrist who survived Nazi concentration camps and founded logotherapy, a form of psychotherapy centered on finding meaning in life even amid extreme suffering.",
+    "lesson": "**Choosing Your Attitude**: Frankl taught that even when we can't control our circumstances, we can choose how we respond to them. In the concentration camps, he observed that those who found meaning—whether through love, work, or spiritual purpose—were more likely to survive. This teaches us that life's meaning isn't handed to us; we create it through our choices and attitudes, especially in difficult times.",
+    "details": "Viktor Frankl was a successful psychiatrist in Vienna when the Nazis invaded Austria. As a Jew, he had the opportunity to escape to America, but he chose to stay with his elderly parents.\n\nFrankl and his family were sent to Nazi concentration camps, including Auschwitz. His parents, brother, and pregnant wife all perished. Stripped of everything, Frankl observed how prisoners responded to unimaginable suffering.\n\nHe noticed that survival wasn't just about physical strength. Those who maintained a sense of purpose—thoughts of loved ones, unfinished work, or spiritual beliefs—showed greater psychological resilience. He survived by envisioning himself lecturing about the psychology of concentration camps after the war.\n\nAfter liberation, Frankl wrote 'Man's Search for Meaning' in nine days. The book has sold millions of copies and influenced psychology, philosophy, and countless individual lives. His central idea: 'When we are no longer able to change a situation, we are challenged to change ourselves.'\n\nFrankl didn't minimize suffering or preach optimism. Instead, he offered something more profound: the understanding that meaning can be found in how we face the inevitable challenges of existence. Even in the camps, he found moments of beauty, compassion, and human dignity."
+  },
+  {
+    "id": 7,
+    "name": "Grace Hopper",
+    "years": "1906-1992",
+    "region": "United States",
+    "field": "Computer Scientist & Naval Officer",
+    "image": "",
+    "summary": "A pioneering computer programmer who created the first compiler and helped develop COBOL, one of the first high-level programming languages. She popularized the term 'debugging' and served in the U.S. Navy until age 79.",
+    "lesson": "**Challenge Assumptions**: Hopper's favorite phrase was 'It's easier to ask forgiveness than it is to get permission.' She constantly questioned the way things were done, asking 'Why not?' instead of accepting 'We've always done it this way.' This teaches us to challenge assumptions and processes that no longer serve us. Innovation requires questioning the status quo, even when it makes others uncomfortable.",
+    "details": "Grace Hopper earned a PhD in mathematics from Yale in 1934, rare for women at the time. During World War II, she joined the U.S. Navy Reserve and was assigned to work on the Harvard Mark I computer.\n\nHopper pioneered the concept of machine-independent programming languages. She believed that programming should be more accessible, not just limited to mathematicians and scientists. This radical idea led her to create the first compiler, which translated human-readable instructions into machine code.\n\nHer work led to the development of COBOL (Common Business-Oriented Language), which made programming accessible to business users. COBOL became one of the most widely used programming languages and is still in use today in many financial and administrative systems.\n\nKnown for her wit and directness, Hopper kept a clock running backwards in her office to remind people that conventional thinking can be overturned. She handed out 'nanoseconds'—pieces of wire representing the distance light travels in a billionth of a second—to teach about computer speed.\n\nRetired from the Navy at 79, Hopper showed that age is no barrier to relevance and contribution. She remained curious, bold, and irreverent throughout her life, embodying the hacker spirit of questioning everything."
+  },
+  {
+    "id": 8,
+    "name": "Chiune Sugihara",
+    "years": "1900-1986",
+    "region": "Japan",
+    "field": "Diplomat",
+    "image": "",
+    "summary": "A Japanese diplomat in Lithuania who, in 1940, defied his government to issue thousands of transit visas to Jewish refugees fleeing the Nazis, saving an estimated 6,000 lives.",
+    "lesson": "**Moral Courage Over Career**: Sugihara knew that issuing visas without permission would end his diplomatic career, but he did it anyway. He later said, 'I may have to disobey my government, but if I don't, I would be disobeying God.' This teaches us that sometimes the right thing to do conflicts with our obligations to institutions. When faced with such moments, our humanity must come first, even at great personal cost.",
+    "details": "In 1939, Chiune Sugihara was appointed Japanese consul to Lithuania. When Germany invaded Poland, thousands of Jewish refugees fled to Lithuania, desperate for visas to escape the advancing Nazi forces.\n\nSugihara telegraphed his government three times requesting permission to issue transit visas. Each time, Tokyo refused. The refugees needed visas to travel through the Soviet Union and Japan to reach safe destinations.\n\nSugihara and his wife Yukiko decided to defy orders. For 29 days, from July 31 to September 4, 1940, Sugihara hand-wrote visas for 18-20 hours each day. He simplified the process, signing visas for entire families. Even as his train was leaving Lithuania, he threw signed visas to refugees on the platform.\n\nHe issued around 2,200 visas, but because he issued family visas, he saved approximately 6,000 people. After the war, he was forced to resign from the foreign service, and his story remained largely unknown for decades.\n\nIn 1984, Israel recognized Sugihara as Righteous Among the Nations. He said, 'I do not understand why we are being honored. I was just doing my duty.' He died in 1986, shortly after finally receiving recognition.\n\nSugihara's story teaches us that doing the right thing often means choosing between orders and conscience. He chose conscience and saved thousands of lives."
+  },
+  {
+    "id": 9,
+    "name": "Bayard Rustin",
+    "years": "1912-1987",
+    "region": "United States",
+    "field": "Civil Rights Activist",
+    "image": "",
+    "summary": "The chief organizer of the 1963 March on Washington, a master strategist of nonviolent resistance who mentored Martin Luther King Jr., yet remained largely in the shadows due to being openly gay.",
+    "lesson": "**Leading from Behind**: Rustin's greatest work happened backstage. He organized one of the largest peaceful demonstrations in history but wasn't allowed to speak at it. This teaches us that meaningful impact doesn't always come with public recognition. Sometimes the most important work is done quietly, supporting others' success. True leadership often means empowering others rather than seeking the spotlight.",
+    "details": "Bayard Rustin was raised by Quakers and embraced pacifist principles from a young age. In 1942, he refused to sit in the back of a bus, years before Rosa Parks. He spent years in prison for refusing to serve in World War II as a conscientious objector.\n\nRustin became a key figure in the civil rights movement, teaching nonviolent resistance tactics inspired by Gandhi. He mentored a young Martin Luther King Jr., helping organize the Montgomery Bus Boycott and shaping King's philosophy of nonviolence.\n\nIn 1963, Rustin organized the March on Washington for Jobs and Freedom in just two months—a logistical miracle involving coordinating 250,000 people, transportation, sanitation, security, and speakers. The march became a defining moment of the civil rights movement.\n\nYet Rustin was kept in the background. Because he was openly gay, civil rights leaders feared he would be used to discredit the movement. He was arrested for homosexuality in 1953, and his sexuality was constantly used against him.\n\nRustin never hid who he was, even when it cost him recognition and opportunities. In his later years, he became an advocate for LGBTQ rights, connecting it to the broader struggle for human dignity. He said, 'The barometer of where one is on human rights questions is no longer the black community, it's the gay community.'\n\nPresident Obama posthumously awarded Rustin the Presidential Medal of Freedom in 2013, finally giving him public recognition for his immense contributions."
+  },
+  {
+    "id": 10,
+    "name": "Ignaz Semmelweis",
+    "years": "1818-1865",
+    "region": "Hungary/Austria",
+    "field": "Physician",
+    "image": "",
+    "summary": "A Hungarian doctor who discovered that handwashing dramatically reduced maternal mortality rates in hospitals, but his ideas were rejected by the medical establishment, leading to his tragic downfall.",
+    "lesson": "**Being Right Isn't Enough**: Semmelweis had the data proving handwashing saved lives, but he couldn't persuade his colleagues because he was arrogant and confrontational. This teaches us that truth alone doesn't change minds—how we communicate matters. Even when you're right, approaching others with humility, patience, and respect is essential for creating change. Being brilliant but abrasive often means dying unrecognized while people continue to suffer.",
+    "details": "In 1847, Ignaz Semmelweis was working at Vienna General Hospital when he noticed a disturbing pattern: women giving birth in the doctor-staffed clinic died from childbed fever at much higher rates than those in the midwife-staffed clinic.\n\nHe hypothesized that doctors were carrying 'cadaverous particles' from autopsies to the maternity ward. He instituted a policy requiring doctors to wash their hands with chlorinated lime solution before examining patients. Mortality rates plummeted from 18% to less than 2%.\n\nDespite this dramatic evidence, Semmelweis's ideas were rejected by most of the medical community. Germ theory didn't exist yet, and doctors were offended by the suggestion that they were causing deaths. Semmelweis also had an abrasive personality—he publicly called doctors who rejected handwashing 'murderers.'\n\nGrowing increasingly bitter and erratic, Semmelweis was eventually committed to a mental asylum, where he died at 47, possibly beaten by guards. Only years later, after Louis Pasteur and Joseph Lister developed germ theory, was Semmelweis vindicated.\n\nToday, handwashing is fundamental to medical practice, and Semmelweis is honored as a pioneer of antiseptic procedures. But thousands of women died unnecessarily because the medical establishment rejected his findings during his lifetime.\n\nHis story is a cautionary tale: revolutionary ideas require not just evidence, but also the ability to persuade others. Changing minds is as much about social skills as intellectual correctness."
+  }
+]
