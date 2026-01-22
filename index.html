@@ -3,426 +3,267 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WRC Rally1 2026 - Monte Carlo Rally</title>
+    <title>WRC Rally1 2026 Season Tracker</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Header with Season Info -->
     <header>
         <div class="header-content">
-            <h1>🏁 WRC RALLY1 2026</h1>
-            <p class="event-name">RALLYE AUTOMOBILE MONTE-CARLO</p>
-            <p class="event-dates">January 23-26, 2026 | Round 1/13</p>
+            <h1>WRC RALLY1 2026</h1>
+            <p class="season-tagline">World Rally Championship - Complete Season Tracker</p>
         </div>
         <nav class="main-nav">
-            <button class="nav-btn active" data-view="standings">Standings</button>
-            <button class="nav-btn" data-view="stages">Live Stages</button>
-            <button class="nav-btn" data-view="cars">Rally1 Cars</button>
-            <button class="nav-btn" data-view="map">Rally Map</button>
-            <button class="nav-btn" data-view="stats">Statistics</button>
+            <button class="nav-btn active" data-view="calendar">Season Calendar</button>
+            <button class="nav-btn" data-view="rally">Current Rally</button>
+            <button class="nav-btn" data-view="drivers">Drivers</button>
+            <button class="nav-btn" data-view="standings">Standings</button>
+            <button class="nav-btn" data-view="tv">TV Schedule</button>
         </nav>
     </header>
 
+    <!-- Current Race Week Banner -->
+    <div id="raceWeekBanner" class="race-week-banner">
+        <div class="banner-content">
+            <span class="banner-label">CURRENT RACE WEEK</span>
+            <span class="banner-rally" id="currentRallyName">Monte Carlo Rally</span>
+            <span class="banner-dates" id="currentRallyDates">January 23-26, 2026</span>
+            <span class="banner-round" id="currentRallyRound">Round 1 of 13</span>
+        </div>
+    </div>
+
     <main>
-        <!-- Standings View -->
-        <div id="standings-view" class="view active">
-            <div class="grid-2">
+        <!-- Season Calendar View -->
+        <div id="calendar-view" class="view active">
+            <section class="card">
+                <h2>2026 WRC Rally1 Season Calendar</h2>
+                <p class="section-intro">Click on any rally to view detailed information, stages, and historical data.</p>
+                <div class="season-calendar" id="seasonCalendar"></div>
+            </section>
+
+            <section class="card">
+                <h2>Championship Points After Each Round</h2>
+                <div class="points-progression" id="pointsProgression"></div>
+            </section>
+        </div>
+
+        <!-- Rally Detail View -->
+        <div id="rally-view" class="view">
+            <!-- Rally Header -->
+            <section class="rally-header-section" id="rallyHeaderSection">
+                <div class="rally-header-bg" id="rallyHeaderBg"></div>
+                <div class="rally-header-content">
+                    <div class="rally-flag" id="rallyFlag"></div>
+                    <h2 id="rallyTitle">Rally Monte Carlo</h2>
+                    <p class="rally-dates" id="rallyDates">January 23-26, 2026</p>
+                    <div class="rally-meta">
+                        <span class="rally-round" id="rallyRound">Round 1/13</span>
+                        <span class="rally-surface" id="rallySurface">Tarmac/Snow</span>
+                        <span class="rally-distance" id="rallyDistance">1234.56 km</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Rally Sub-Navigation -->
+            <div class="rally-subnav">
+                <button class="subnav-btn active" data-rally-view="overview">Overview</button>
+                <button class="subnav-btn" data-rally-view="stages">Stages</button>
+                <button class="subnav-btn" data-rally-view="results">Results</button>
+                <button class="subnav-btn" data-rally-view="media">Videos & Photos</button>
+                <button class="subnav-btn" data-rally-view="history">History</button>
+            </div>
+
+            <!-- Rally Overview Section -->
+            <div id="rally-overview" class="rally-section active">
+                <div class="grid-2">
+                    <section class="card">
+                        <h2>Rally Overview</h2>
+                        <div id="rallyOverviewContent"></div>
+                    </section>
+                    <section class="card">
+                        <h2>Current Standings</h2>
+                        <div id="rallyCurrentStandings"></div>
+                    </section>
+                </div>
                 <section class="card">
-                    <h2>Driver Championship</h2>
-                    <div class="standings-list" id="driverStandings"></div>
+                    <h2>Rally Map</h2>
+                    <div id="rallyMapOverview" class="rally-map-container"></div>
+                </section>
+            </div>
+
+            <!-- Stages Section -->
+            <div id="rally-stages" class="rally-section">
+                <section class="card">
+                    <h2>All Stages</h2>
+                    <div class="stages-grid" id="stagesGrid"></div>
                 </section>
 
+                <!-- Selected Stage Detail -->
+                <div id="stageDetail" class="stage-detail-container">
+                    <section class="card">
+                        <div class="stage-detail-header" id="stageDetailHeader"></div>
+                    </section>
+
+                    <div class="grid-2">
+                        <section class="card">
+                            <h3>Stage Map</h3>
+                            <div id="stageMapContainer" class="stage-map-container"></div>
+                        </section>
+                        <section class="card">
+                            <h3>Stage Profile</h3>
+                            <div id="stageProfileContainer"></div>
+                        </section>
+                    </div>
+
+                    <section class="card">
+                        <h3>Stage Information</h3>
+                        <div id="stageInfoContainer"></div>
+                    </section>
+
+                    <section class="card">
+                        <h3>Stage Results</h3>
+                        <div id="stageResultsContainer"></div>
+                    </section>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div id="rally-results" class="rally-section">
+                <section class="card">
+                    <h2>Overall Rally Results</h2>
+                    <div id="overallResults"></div>
+                </section>
+                <div class="grid-2">
+                    <section class="card">
+                        <h2>Stage Winners</h2>
+                        <div id="stageWinners"></div>
+                    </section>
+                    <section class="card">
+                        <h2>Power Stage</h2>
+                        <div id="powerStageResults"></div>
+                    </section>
+                </div>
+            </div>
+
+            <!-- Media Section -->
+            <div id="rally-media" class="rally-section">
+                <section class="card">
+                    <h2>Legendary Runs & Highlights</h2>
+                    <div class="video-gallery" id="videoGallery"></div>
+                </section>
+                <section class="card">
+                    <h2>Stage Photos</h2>
+                    <div class="photo-gallery" id="photoGallery"></div>
+                </section>
+            </div>
+
+            <!-- History Section -->
+            <div id="rally-history" class="rally-section">
+                <section class="card">
+                    <h2>Rally History</h2>
+                    <div id="rallyHistoryContent"></div>
+                </section>
+                <section class="card">
+                    <h2>Past Winners</h2>
+                    <div id="pastWinners"></div>
+                </section>
+                <section class="card">
+                    <h2>Stage Records</h2>
+                    <div id="stageRecords"></div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Drivers View -->
+        <div id="drivers-view" class="view">
+            <section class="card">
+                <h2>2026 Rally1 Drivers</h2>
+                <div class="team-filter">
+                    <button class="team-filter-btn active" data-team="all">All Teams</button>
+                    <button class="team-filter-btn toyota" data-team="Toyota">Toyota</button>
+                    <button class="team-filter-btn hyundai" data-team="Hyundai">Hyundai</button>
+                    <button class="team-filter-btn ford" data-team="M-Sport Ford">M-Sport Ford</button>
+                </div>
+                <div class="drivers-grid" id="driversGrid"></div>
+            </section>
+
+            <!-- Driver Detail Modal -->
+            <div id="driverModal" class="modal">
+                <div class="modal-content driver-modal-content">
+                    <button class="modal-close">&times;</button>
+                    <div id="driverDetailContent"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Standings View -->
+        <div id="standings-view" class="view">
+            <div class="grid-2">
+                <section class="card">
+                    <h2>Driver Championship Standings</h2>
+                    <div id="driverChampionship"></div>
+                </section>
                 <section class="card">
                     <h2>Manufacturer Championship</h2>
-                    <div class="standings-list" id="manufacturerStandings"></div>
+                    <div id="manufacturerChampionship"></div>
                 </section>
             </div>
-
             <section class="card">
-                <h2>Current Rally Leaderboard - Monte Carlo</h2>
-                <div class="filters">
-                    <button class="filter-btn active" data-filter="overall">Overall</button>
-                    <button class="filter-btn" data-filter="stage">Last Stage</button>
-                    <button class="filter-btn" data-filter="power">Power Stage Preview</button>
-                </div>
-                <div id="rallyLeaderboard"></div>
+                <h2>Points Breakdown by Rally</h2>
+                <div id="pointsBreakdown"></div>
             </section>
         </div>
 
-        <!-- Live Stages View -->
-        <div id="stages-view" class="view">
+        <!-- TV Schedule View -->
+        <div id="tv-view" class="view">
             <section class="card">
-                <h2>Stage Progress</h2>
-                <div class="stage-selector">
-                    <button class="stage-btn" data-stage="1">SS1</button>
-                    <button class="stage-btn" data-stage="2">SS2</button>
-                    <button class="stage-btn" data-stage="3">SS3</button>
-                    <button class="stage-btn" data-stage="4">SS4</button>
-                    <button class="stage-btn active" data-stage="5">SS5</button>
-                    <button class="stage-btn" data-stage="6">SS6</button>
-                    <button class="stage-btn" data-stage="7">SS7</button>
-                    <button class="stage-btn" data-stage="8">SS8</button>
+                <h2>TV Schedule</h2>
+                <div class="timezone-selector">
+                    <label for="timezoneSelect">Your Timezone:</label>
+                    <select id="timezoneSelect"></select>
+                    <span class="detected-tz" id="detectedTz"></span>
                 </div>
-                <div id="stageInfo" class="stage-info"></div>
+                <div id="tvScheduleContent"></div>
             </section>
-
-            <div class="grid-2">
-                <section class="card">
-                    <h2>Stage Profile</h2>
-                    <div id="stageProfile"></div>
-                </section>
-
-                <section class="card">
-                    <h2>Weather Conditions</h2>
-                    <div id="weatherInfo"></div>
-                </section>
-            </div>
-
             <section class="card">
-                <h2>Stage Results</h2>
-                <div id="stageResults"></div>
-            </section>
-
-            <section class="card">
-                <h2>Split Time Comparison</h2>
-                <div class="comparison-controls">
-                    <select id="driver1Select"></select>
-                    <span>vs</span>
-                    <select id="driver2Select"></select>
-                </div>
-                <div id="splitComparison"></div>
-            </section>
-        </div>
-
-        <!-- Rally1 Cars View -->
-        <div id="cars-view" class="view">
-            <div class="grid-3">
-                <section class="card car-card" data-team="toyota">
-                    <div class="car-header toyota-header">
-                        <h2>Toyota GR Yaris Rally1</h2>
-                        <p class="team-name">TOYOTA GAZOO Racing WRT</p>
-                    </div>
-                    <div class="car-image">🏎️</div>
-                    <div class="car-specs">
-                        <div class="spec-row">
-                            <span>Engine</span>
-                            <span>1.6L Turbo + Hybrid</span>
-                        </div>
-                        <div class="spec-row">
-                            <span>Power</span>
-                            <span>500 HP</span>
-                        </div>
-                        <div class="spec-row">
-                            <span>Weight</span>
-                            <span>1260 kg</span>
-                        </div>
-                        <div class="spec-row">
-                            <span>0-100 km/h</span>
-                            <span>~2.5s</span>
-                        </div>
-                    </div>
-                    <div class="drivers-list">
-                        <h3>Drivers</h3>
-                        <div class="driver-chip">#1 Sébastien Ogier</div>
-                        <div class="driver-chip">#17 Kalle Rovanperä</div>
-                    </div>
-                </section>
-
-                <section class="card car-card" data-team="hyundai">
-                    <div class="car-header hyundai-header">
-                        <h2>Hyundai i20 N Rally1</h2>
-                        <p class="team-name">Hyundai Shell Mobis WRT</p>
-                    </div>
-                    <div class="car-image">🏎️</div>
-                    <div class="car-specs">
-                        <div class="spec-row">
-                            <span>Engine</span>
-                            <span>1.6L Turbo + Hybrid</span>
-                        </div>
-                        <div class="spec-row">
-                            <span>Power</span>
-                            <span>500 HP</span>
-                        </div>
-                        <div class="spec-row">
-                            <span>Weight</span>
-                            <span>1260 kg</span>
-                        </div>
-                        <div class="spec-row">
-                            <span>0-100 km/h</span>
-                            <span>~2.5s</span>
-                        </div>
-                    </div>
-                    <div class="drivers-list">
-                        <h3>Drivers</h3>
-                        <div class="driver-chip">#4 Esapekka Lappi</div>
-                        <div class="driver-chip">#11 Thierry Neuville</div>
-                    </div>
-                </section>
-
-                <section class="card car-card" data-team="ford">
-                    <div class="car-header ford-header">
-                        <h2>Ford Puma Rally1</h2>
-                        <p class="team-name">M-Sport Ford WRT</p>
-                    </div>
-                    <div class="car-image">🏎️</div>
-                    <div class="car-specs">
-                        <div class="spec-row">
-                            <span>Engine</span>
-                            <span>1.6L Turbo + Hybrid</span>
-                        </div>
-                        <div class="spec-row">
-                            <span>Power</span>
-                            <span>500 HP</span>
-                        </div>
-                        <div class="spec-row">
-                            <span>Weight</span>
-                            <span>1260 kg</span>
-                        </div>
-                        <div class="spec-row">
-                            <span>0-100 km/h</span>
-                            <span>~2.5s</span>
-                        </div>
-                    </div>
-                    <div class="drivers-list">
-                        <h3>Drivers</h3>
-                        <div class="driver-chip">#16 Adrien Fourmaux</div>
-                        <div class="driver-chip">#42 Grégoire Munster</div>
-                    </div>
-                </section>
-            </div>
-
-            <section class="card">
-                <h2>Rally1 Hybrid Technology</h2>
-                <p class="tech-description">
-                    The 2026 WRC Rally1 cars feature cutting-edge hybrid technology, combining a 1.6-liter turbocharged engine with a compact electric motor.
-                    The hybrid system provides an additional 130 kW (174 HP) of power and enables incredible acceleration out of corners.
-                    Drivers can deploy the hybrid boost strategically throughout each stage, adding a new dimension to rally strategy.
-                </p>
-            </section>
-        </div>
-
-        <!-- Rally Map View -->
-        <div id="map-view" class="view">
-            <section class="card">
-                <h2>Monte Carlo Rally Route</h2>
-                <div class="rally-map">
-                    <div class="map-placeholder">
-                        <p>🗺️ Interactive Rally Map</p>
-                        <p class="map-subtitle">Gap • Digne-les-Bains • Monte Carlo</p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="card">
-                <h2>Stage Overview</h2>
-                <div class="stages-table">
-                    <div class="stage-table-row header">
-                        <span>Stage</span>
-                        <span>Name</span>
-                        <span>Distance</span>
-                        <span>Surface</span>
-                        <span>Status</span>
-                    </div>
-                    <div class="stage-table-row" data-stage="1">
-                        <span>SS1</span>
-                        <span>Thoard - Sisteron</span>
-                        <span>36.85 km</span>
-                        <span class="surface-badge tarmac">Tarmac</span>
-                        <span class="status-complete">✓ Complete</span>
-                    </div>
-                    <div class="stage-table-row" data-stage="2">
-                        <span>SS2</span>
-                        <span>Bayons - Bréziers</span>
-                        <span>25.49 km</span>
-                        <span class="surface-badge mixed">Mixed</span>
-                        <span class="status-complete">✓ Complete</span>
-                    </div>
-                    <div class="stage-table-row" data-stage="3">
-                        <span>SS3</span>
-                        <span>Curbans - Valserre</span>
-                        <span>20.02 km</span>
-                        <span class="surface-badge ice">Ice/Snow</span>
-                        <span class="status-complete">✓ Complete</span>
-                    </div>
-                    <div class="stage-table-row" data-stage="4">
-                        <span>SS4</span>
-                        <span>Avançon - Notre-Dame</span>
-                        <span>20.59 km</span>
-                        <span class="surface-badge tarmac">Tarmac</span>
-                        <span class="status-complete">✓ Complete</span>
-                    </div>
-                    <div class="stage-table-row active" data-stage="5">
-                        <span>SS5</span>
-                        <span>Saint-Léger - Saint-Geniez</span>
-                        <span>23.07 km</span>
-                        <span class="surface-badge mixed">Mixed</span>
-                        <span class="status-live">● LIVE</span>
-                    </div>
-                    <div class="stage-table-row" data-stage="6">
-                        <span>SS6</span>
-                        <span>La Bréole - Selonnet</span>
-                        <span>18.31 km</span>
-                        <span class="surface-badge tarmac">Tarmac</span>
-                        <span class="status-upcoming">Upcoming</span>
-                    </div>
-                    <div class="stage-table-row" data-stage="7">
-                        <span>SS7</span>
-                        <span>La Bollène-Vésubie</span>
-                        <span>23.25 km</span>
-                        <span class="surface-badge tarmac">Tarmac</span>
-                        <span class="status-upcoming">Upcoming</span>
-                    </div>
-                    <div class="stage-table-row power-stage" data-stage="8">
-                        <span>SS8</span>
-                        <span>Col de Turini (Power Stage)</span>
-                        <span>19.15 km</span>
-                        <span class="surface-badge mixed">Mixed</span>
-                        <span class="status-upcoming">⚡ Power Stage</span>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- Statistics View -->
-        <div id="stats-view" class="view">
-            <div class="grid-2">
-                <section class="card">
-                    <h2>Monte Carlo History</h2>
-                    <div class="history-list">
-                        <div class="history-item">
-                            <span class="year">2025</span>
-                            <span class="winner">Sébastien Ogier (Toyota)</span>
-                        </div>
-                        <div class="history-item">
-                            <span class="year">2024</span>
-                            <span class="winner">Thierry Neuville (Hyundai)</span>
-                        </div>
-                        <div class="history-item">
-                            <span class="year">2023</span>
-                            <span class="winner">Sébastien Ogier (Toyota)</span>
-                        </div>
-                        <div class="history-item">
-                            <span class="year">2022</span>
-                            <span class="winner">Sébastien Loeb (M-Sport Ford)</span>
-                        </div>
-                        <div class="history-item">
-                            <span class="year">2021</span>
-                            <span class="winner">Sébastien Ogier (Toyota)</span>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="card">
-                    <h2>Most Wins (All-Time)</h2>
-                    <div class="history-list">
-                        <div class="history-item">
-                            <span class="position">1st</span>
-                            <span class="winner">Sébastien Loeb - 8 wins</span>
-                        </div>
-                        <div class="history-item">
-                            <span class="position">2nd</span>
-                            <span class="winner">Sébastien Ogier - 8 wins</span>
-                        </div>
-                        <div class="history-item">
-                            <span class="position">3rd</span>
-                            <span class="winner">Tommi Mäkinen - 4 wins</span>
-                        </div>
-                        <div class="history-item">
-                            <span class="position">4th</span>
-                            <span class="winner">Walter Röhrl - 4 wins</span>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <section class="card">
-                <h2>2026 Season Calendar</h2>
-                <div class="calendar-grid">
-                    <div class="calendar-item active">
-                        <div class="calendar-round">R1</div>
-                        <div class="calendar-name">Monte Carlo</div>
-                        <div class="calendar-date">Jan 23-26</div>
-                        <div class="calendar-surface">Tarmac/Snow</div>
-                    </div>
-                    <div class="calendar-item">
-                        <div class="calendar-round">R2</div>
-                        <div class="calendar-name">Sweden</div>
-                        <div class="calendar-date">Feb 13-16</div>
-                        <div class="calendar-surface">Snow/Ice</div>
-                    </div>
-                    <div class="calendar-item">
-                        <div class="calendar-round">R3</div>
-                        <div class="calendar-name">Kenya</div>
-                        <div class="calendar-date">Mar 20-23</div>
-                        <div class="calendar-surface">Gravel</div>
-                    </div>
-                    <div class="calendar-item">
-                        <div class="calendar-round">R4</div>
-                        <div class="calendar-name">Croatia</div>
-                        <div class="calendar-date">Apr 17-20</div>
-                        <div class="calendar-surface">Tarmac</div>
-                    </div>
-                    <div class="calendar-item">
-                        <div class="calendar-round">R5</div>
-                        <div class="calendar-name">Portugal</div>
-                        <div class="calendar-date">May 15-18</div>
-                        <div class="calendar-surface">Gravel</div>
-                    </div>
-                    <div class="calendar-item">
-                        <div class="calendar-round">R6</div>
-                        <div class="calendar-name">Sardinia</div>
-                        <div class="calendar-date">Jun 5-8</div>
-                        <div class="calendar-surface">Gravel</div>
-                    </div>
-                    <div class="calendar-item">
-                        <div class="calendar-round">R7</div>
-                        <div class="calendar-name">Poland</div>
-                        <div class="calendar-date">Jun 26-29</div>
-                        <div class="calendar-surface">Gravel</div>
-                    </div>
-                    <div class="calendar-item">
-                        <div class="calendar-round">R8</div>
-                        <div class="calendar-name">Estonia</div>
-                        <div class="calendar-date">Jul 17-20</div>
-                        <div class="calendar-surface">Gravel</div>
-                    </div>
-                    <div class="calendar-item">
-                        <div class="calendar-round">R9</div>
-                        <div class="calendar-name">Finland</div>
-                        <div class="calendar-date">Jul 31-Aug 3</div>
-                        <div class="calendar-surface">Gravel</div>
-                    </div>
-                    <div class="calendar-item">
-                        <div class="calendar-round">R10</div>
-                        <div class="calendar-name">Greece</div>
-                        <div class="calendar-date">Sep 3-6</div>
-                        <div class="calendar-surface">Gravel</div>
-                    </div>
-                    <div class="calendar-item">
-                        <div class="calendar-round">R11</div>
-                        <div class="calendar-name">Chile</div>
-                        <div class="calendar-date">Sep 17-20</div>
-                        <div class="calendar-surface">Gravel</div>
-                    </div>
-                    <div class="calendar-item">
-                        <div class="calendar-round">R12</div>
-                        <div class="calendar-name">Central Europe</div>
-                        <div class="calendar-date">Oct 15-18</div>
-                        <div class="calendar-surface">Tarmac</div>
-                    </div>
-                    <div class="calendar-item">
-                        <div class="calendar-round">R13</div>
-                        <div class="calendar-name">Japan</div>
-                        <div class="calendar-date">Nov 19-22</div>
-                        <div class="calendar-surface">Tarmac</div>
-                    </div>
-                </div>
+                <h2>Where to Watch</h2>
+                <div class="broadcast-info" id="broadcastInfo"></div>
             </section>
         </div>
     </main>
 
+    <!-- Stage Detail Modal -->
+    <div id="stageModal" class="modal">
+        <div class="modal-content stage-modal-content">
+            <button class="modal-close">&times;</button>
+            <div id="stageModalContent"></div>
+        </div>
+    </div>
+
+    <!-- Video Player Modal -->
+    <div id="videoModal" class="modal">
+        <div class="modal-content video-modal-content">
+            <button class="modal-close">&times;</button>
+            <div id="videoPlayerContainer"></div>
+        </div>
+    </div>
+
+    <!-- Photo Viewer Modal -->
+    <div id="photoModal" class="modal">
+        <div class="modal-content photo-modal-content">
+            <button class="modal-close">&times;</button>
+            <div id="photoViewerContainer"></div>
+            <div class="photo-nav">
+                <button id="photoPrev" class="photo-nav-btn">&larr; Previous</button>
+                <span id="photoCounter">1 / 10</span>
+                <button id="photoNext" class="photo-nav-btn">Next &rarr;</button>
+            </div>
+        </div>
+    </div>
+
     <footer>
-        <p>WRC Rally1 2026 Fan Site | Unofficial Rally Tracker</p>
-        <p>Data updates every 30 seconds during live stages</p>
+        <p>WRC Rally1 2026 Season Tracker | Unofficial Fan Site</p>
+        <p>Data updates during live stages | All times shown in your local timezone</p>
     </footer>
 
     <script src="script.js"></script>

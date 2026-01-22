@@ -1,197 +1,144 @@
-# Denver Art Museum Guide
+# WRC Rally1 2026 Season Tracker
 
-A personal web-based application for browsing and managing your Denver Art Museum painting collection.
+A comprehensive, interactive web application for following the 2026 World Rally Championship Rally1 season.
 
 ## Features
 
-- **Gallery View**: Browse all paintings in a beautiful grid layout
-- **Sorting**: Sort paintings by title, artist, year, or collection
-- **Filtering**: Filter paintings by museum collection
-- **Search**: Search across titles, artists, collections, and years
-- **Detailed View**: Click any painting to see full information and details
-- **Responsive Design**: Works on desktop, tablet, and mobile devices
+### Season Calendar
+- Complete 2026 WRC calendar with all 13 rounds
+- Interactive rally cards showing status (Live, Completed, Upcoming)
+- Click any rally to view detailed information
 
-## Getting Started
+### Rally Details
+For each rally location:
+- **Overview**: Full description, stats, weather conditions, and service location
+- **Stages**: All stages with interactive maps, elevation profiles, and detailed descriptions
+- **Results**: Live standings, stage winners, and power stage results
+- **Videos & Photos**: Legendary run videos and stage photography
+- **History**: Rally history and past winners
 
-### Opening the App
+### Interactive Stage Maps
+- Visual route representation for each stage
+- Elevation profiles showing start, peak, and finish elevations
+- Stage status tracking (Complete, Live, Upcoming)
+- Detailed stage characteristics and descriptions
 
-1. Open `index.html` in your web browser
-   - Double-click the file, or
-   - Right-click and select "Open with" your preferred browser
+### Driver Profiles
+Complete bios for all 2026 Rally1 drivers:
+- **Sebastien Ogier** (Toyota) - 8x World Champion
+- **Kalle Rovanpera** (Toyota) - 2x World Champion
+- **Thierry Neuville** (Hyundai) - 2024 World Champion
+- **Ott Tanak** (Hyundai) - 2019 World Champion
+- **Elfyn Evans** (Toyota)
+- **Adrien Fourmaux** (M-Sport Ford)
+- **Takamoto Katsuta** (Toyota)
+- **Gregoire Munster** (M-Sport Ford)
 
-### Directory Structure
+Each profile includes:
+- Personal information and career statistics
+- Championship and rally wins
+- Detailed biography
+- Career highlights
+
+### Championship Standings
+- Driver championship with points
+- Manufacturer championship
+- Points breakdown by rally
+- Points system explanation
+
+### TV Schedule
+- Automatic timezone detection
+- Timezone selector for manual adjustment
+- Full schedule for each rally day
+- Broadcast information and streaming options
+
+## 2026 Season Calendar
+
+| Round | Rally | Dates | Surface |
+|-------|-------|-------|---------|
+| R1 | Monte-Carlo | Jan 23-26 | Tarmac/Snow |
+| R2 | Sweden | Feb 13-16 | Snow/Ice |
+| R3 | Safari Kenya | Mar 20-23 | Gravel |
+| R4 | Croatia | Apr 17-20 | Tarmac |
+| R5 | Portugal | May 15-18 | Gravel |
+| R6 | Sardinia | Jun 5-8 | Gravel |
+| R7 | Poland | Jun 26-29 | Gravel |
+| R8 | Estonia | Jul 17-20 | Gravel |
+| R9 | Finland | Jul 31-Aug 3 | Gravel |
+| R10 | Greece | Sep 3-6 | Gravel |
+| R11 | Chile | Sep 17-20 | Gravel |
+| R12 | Central Europe | Oct 15-18 | Tarmac |
+| R13 | Japan | Nov 19-22 | Tarmac |
+
+## Usage
+
+1. Open `index.html` in a web browser
+2. Navigate using the main menu:
+   - **Season Calendar**: View all 2026 rallies
+   - **Current Rally**: Detailed view of the active rally
+   - **Drivers**: Browse all Rally1 drivers with full bios
+   - **Standings**: Championship standings
+   - **TV Schedule**: Broadcast times in your timezone
+
+3. Click on any rally card to view detailed information
+4. Click on any driver card to view their full profile
+5. In rally view, click on stages to see maps and detailed information
+
+## Technical Details
+
+- **Built with**: HTML5, CSS3, Vanilla JavaScript
+- **No dependencies**: Runs entirely in the browser
+- **Responsive design**: Works on desktop, tablet, and mobile
+- **Dark theme**: Professional motorsport aesthetic
+- **Team colors**: Toyota Red, Hyundai Blue, Ford Blue
+
+## File Structure
 
 ```
-Claude/
-├── index.html          # Main application file
-├── styles.css          # Styling
-├── script.js           # JavaScript functionality
-├── data/
-│   └── paintings.json  # Your painting data
-└── images/             # Store your painting images here
-    └── (your images)
+/
+├── index.html      # Main application HTML
+├── styles.css      # Complete stylesheet
+├── script.js       # Application logic and data
+└── README.md       # This file
 ```
 
-## Adding Paintings
+## Features Highlight
 
-### Step 1: Add Your Images
+### Race Week Banner
+The banner at the top shows the current race week with live updates during events.
 
-1. Create an `images` folder in the project directory if it doesn't exist
-2. Copy your painting images into this folder
-3. Supported formats: JPG, PNG, WebP
-4. Recommended: Name files descriptively (e.g., `starry-night.jpg`)
+### Interactive Stage Visualization
+Each stage includes:
+- SVG-based route map with elevation markers
+- Start/Peak/Finish elevation display
+- Stage profile chart
+- Detailed stage description and characteristics
 
-### Step 2: Edit paintings.json
+### Driver Modal
+Clicking a driver opens a detailed modal with:
+- Career statistics
+- Personal information
+- Full biography
+- Career highlights
 
-Open `data/paintings.json` in any text editor and add your painting entries.
-
-#### Data Format
-
-Each painting entry should follow this structure:
-
-```json
-{
-  "id": 1,
-  "title": "Painting Title",
-  "artist": "Artist Name",
-  "year": 1920,
-  "collection": "Collection Name",
-  "image": "images/filename.jpg",
-  "description": "Brief description of the painting",
-  "details": "Detailed information about the painting, including history, technique, significance, etc."
-}
-```
-
-#### Field Descriptions
-
-- **id**: Unique number for each painting (increment for each new entry)
-- **title**: The painting's title
-- **artist**: The artist's name
-- **year**: Year the painting was created (use a number)
-- **collection**: Museum collection name (e.g., "American Art", "European Art", "Modern & Contemporary")
-- **image**: Path to the image file (relative to index.html)
-- **description**: Short description (1-2 sentences)
-- **details**: Longer writeup with comprehensive information
-
-#### Example Entry
-
-```json
-{
-  "id": 2,
-  "title": "The Blue Dancer",
-  "artist": "Edgar Degas",
-  "year": 1890,
-  "collection": "European Art",
-  "image": "images/blue-dancer.jpg",
-  "description": "A stunning portrayal of a ballet dancer in motion, showcasing Degas' masterful use of color and movement.",
-  "details": "This painting is part of Degas' famous series of ballet dancers. Created in 1890, it demonstrates his innovative approach to capturing movement and his fascination with the world of dance. The use of blue tones creates a dreamy, ethereal quality while the dynamic pose captures a fleeting moment of performance. Degas often worked in pastels for these pieces, allowing him to achieve the soft, luminous effects seen here."
-}
-```
-
-#### Full Example (Multiple Paintings)
-
-```json
-[
-  {
-    "id": 1,
-    "title": "Mountain Landscape",
-    "artist": "Thomas Moran",
-    "year": 1875,
-    "collection": "American Western Art",
-    "image": "images/mountain-landscape.jpg",
-    "description": "A breathtaking vista of the Rocky Mountains at sunset.",
-    "details": "Thomas Moran was instrumental in capturing the beauty of the American West..."
-  },
-  {
-    "id": 2,
-    "title": "Portrait of a Lady",
-    "artist": "John Singer Sargent",
-    "year": 1905,
-    "collection": "American Art",
-    "image": "images/portrait-lady.jpg",
-    "description": "An elegant portrait demonstrating Sargent's virtuoso brushwork.",
-    "details": "This portrait showcases Sargent's ability to capture both the physical likeness..."
-  }
-]
-```
-
-### Common Collection Names (Denver Art Museum)
-
-Here are some typical collection names you might use:
-
-- American Western Art
-- American Indian Art
-- Modern & Contemporary Art
-- European Art
-- Asian Art
-- Pre-Columbian Art
-- Spanish Colonial Art
-- Architecture & Design
-- Photography
-- Textile Art
-
-## Tips for Best Results
-
-### Images
-- Use high-quality images for best display
-- Images are automatically resized to fit the gallery
-- If an image fails to load, a placeholder will appear
-
-### Writing Descriptions
-- **Description field**: Keep it brief (1-3 sentences) - this appears on hover/preview
-- **Details field**: Write comprehensive information here - visible in the modal view
-- Include: historical context, artistic technique, significance, interesting facts
-
-### Collections
-- Use consistent naming for collections (e.g., always "Modern & Contemporary Art" not sometimes "Modern Art")
-- The filter dropdown automatically populates based on your collection names
-- Collections are case-sensitive
-
-### JSON Syntax
-- Don't forget commas between entries (but not after the last entry)
-- Use double quotes for all strings
-- Numbers (like year and id) don't need quotes
-- Each entry should be enclosed in curly braces `{}`
-- The entire file should be wrapped in square brackets `[]`
-
-### Validation
-If your JSON file has errors, you can validate it at: https://jsonlint.com/
-
-## Troubleshooting
-
-**Paintings don't appear:**
-- Check that `data/paintings.json` exists and is properly formatted
-- Validate your JSON syntax
-- Check the browser console (F12) for errors
-
-**Images don't load:**
-- Verify the image path in the JSON file
-- Ensure images are in the correct folder
-- Check that image filenames match exactly (case-sensitive)
-
-**Filtering/sorting not working:**
-- Refresh the page
-- Check for JavaScript errors in the browser console (F12)
-
-## Browser Compatibility
-
-Works with all modern browsers:
-- Chrome/Edge (recommended)
-- Firefox
-- Safari
-- Opera
-
-## Privacy
-
-This app runs entirely in your browser. No data is sent to any server. All information stays on your computer.
+### Timezone Support
+The TV Schedule automatically detects your timezone and converts all broadcast times accordingly. You can also manually select a different timezone.
 
 ## Customization
 
-Feel free to modify:
-- **styles.css**: Change colors, fonts, layout
-- **index.html**: Adjust the structure or add new features
-- **script.js**: Modify sorting/filtering behavior
+The application uses CSS custom properties for easy theming:
 
-## License
+```css
+:root {
+    --primary-bg: #0a0a0f;
+    --accent-red: #ff1744;
+    --accent-blue: #00b0ff;
+    --toyota-red: #eb0a1e;
+    --hyundai-blue: #002c5f;
+    --ford-blue: #003478;
+}
+```
 
-This is for your personal use. Modify and customize as you wish!
+---
+
+*WRC Rally1 2026 Season Tracker - Unofficial Fan Site*
